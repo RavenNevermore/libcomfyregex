@@ -1,0 +1,44 @@
+§ /**
+§  * @file
+§  *
+§  * Replaces occourences of multiple regular expressions in the same source
+§  * file.
+§  *
+§  * For every regular expression, a `replace_match` method is registered, which
+§  * is responsible for providing a replacement for a found match of the
+§  * assotiated expression.
+§  *
+§  * The multimatcher attempts to find all occourences of all expressions in the
+§  * source string. It will then order them inn a single list, ascending by
+§  * the position of the first matching character of the matches.
+§  *
+§  * > Matches, that are overlapped by matches of other expressions are
+§  * > discarded in this process. This is, because after replacement, the match
+§  * > of the second pattern can not still be assumed to exist.
+§  *
+§  * After ordering the findings, the multimatcher will concatonate the parts in
+§  * between the found matches, with the replacements from the `replace_match`
+§  * methods of the corrosponding expressions.
+§  *
+§  */
+
+§ typedef struct
+§ {
+§     char* pattern;
+§     char* (*replace_match)( const char* source, const int source_length,
+§                             const int group_count,
+§                             const char* groups[],
+§                             const int group_length[]);
+§ } Regex;
+
+§ typedef struct
+§ {
+§     int size;
+§     Regex* expressions;
+§ } MultiRegex;
+
+public char* multi_regex_replace(  const MultiRegex* expressions,
+                            const char* source, const int source_length)
+{
+    return "Nope!";
+}
