@@ -40,5 +40,5 @@
 public char* multi_regex_replace(  const MultiRegex* expressions,
                             const char* source, const int source_length)
 {
-    return "Nope!";
+    return 0;
 }

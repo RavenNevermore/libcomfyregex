@@ -1,4 +1,4 @@
-CFLAGS+=-g -std=c11 -fPIC
+CFLAGS+=-g -std=c11
 # CFLAGS+=-Idependencies/include
 
 # LDFLAGS+=-Ldependencies/lib
@@ -34,7 +34,8 @@ build/c/%.c: sources/%.comfy | $(all_headers)
 $(shared_lib): $(all_objs) | $(all_headers)
 	$(CC) -shared -o $@ $^
 
-test: $(shared_lib)
+test: all
+	cd test && $(MAKE) test
 
 
 prepare:
@@ -46,6 +47,7 @@ prepare:
 
 clean:
 	$(RM) -r build
+	cd test && $(MAKE) clean
 
 .PHONY: clean check prepare test
 

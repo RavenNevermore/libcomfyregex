@@ -1,4 +1,8 @@
-CFLAGS+=-g -std=c11 -fPIC
+CFLAGS+=-g -std=c11
+CFLAGS+=-I../build/headers
+
+LDFLAGS+=-L../build/lib
+LDLIBS+=-lcomfyregex
 
 test_c=$(wildcard *.c)
 test_o=$(patsubst %.c, %.o, $(test_c))
@@ -12,7 +16,7 @@ test: $(run_tests)
 	./$?
 
 %.test: %.c
-	$(CC) $(CFLAGS) -o $@ $?
+	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -o $@ $?
 
 clean:
 	$(RM) $(tests)
