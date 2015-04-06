@@ -33,3 +33,7 @@
 
 # Output
 build/**/*
+
+# Python Stuff
+*__pycache__*
+*.pyc
